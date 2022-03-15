@@ -1,0 +1,16 @@
+# ninja log v5
+2	372	6690042584908818	CMakeFiles/lab4.dir/class/Triangle.cpp.obj	1b71fb552bc915a4
+3	383	6690045088096830	CMakeFiles/lab4.dir/main.cpp.obj	e868c603c9efcf02
+12	542	6690045019455095	CMakeFiles/lab4.dir/tests/tests.cpp.obj	dc025267f005b006
+383	514	6690045089396762	lab4.exe	5beb378ba4098d6e
+12	369	6690042584878831	CMakeFiles/lab4.dir/class/Point.cpp.obj	c220507714754bdf
+17	80	6690008952002135	CMakeFiles/lab4.dir/class/tests.cpp.obj	5df777f0ecb9c161
+1	259	6690670152215862	build.ninja	6c7b84cc597116d6
+15	519	6690045019199812	CMakeFiles/lab4.dir/classes/Point.cpp.obj	49755ea1552f3fda
+8	531	6690045019339822	CMakeFiles/lab4.dir/classes/Triangle.cpp.obj	a5487cedab972cb5
+4	710	6690676133717708	CMakeFiles/lab4.dir/classes/Triangle.cpp.obj	a5487cedab972cb5
+20	712	6690676133707704	CMakeFiles/lab4.dir/main.cpp.obj	e868c603c9efcf02
+64	714	6690676133737727	CMakeFiles/lab4.dir/tests/tests.cpp.obj	dc025267f005b006
+714	1063	6690676137217722	lab4.exe	5beb378ba4098d6e
+4	360	6690676727059642	CMakeFiles/lab4.dir/classes/Triangle.cpp.obj	a5487cedab972cb5
+360	462	6690676728019653	lab4.exe	5beb378ba4098d6e
