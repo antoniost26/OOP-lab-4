@@ -4,6 +4,7 @@
 #include "tests.h"
 #include "../classes/Point.h"
 #include "../classes/Triangle.h"
+#include "../TriangleRepository/TriangleRepository.h"
 #include <cassert>
 
 void testPoints() {
@@ -83,8 +84,40 @@ void testTriangles() {
 
 }
 
+void testTrianglRepository() {
+    TriangleRepository tr;
+    tr.add(Triangle(Point(1,2), Point(1,5),Point(3,7)));
+    tr.add(Triangle(Point(2,2), Point(3,5),Point(5,6)));
+    tr.add(Triangle(Point(1,5), Point(21,53),Point(41,44)));
+    tr.add(Triangle(Point(42,31), Point(5,6),Point(1,6)));
+    tr.add(Triangle(Point(2,6), Point(3,63),Point(13,14)));
+    assert(tr.getLength() == 5);
+    tr.add(Triangle(Point(5,6), Point(35,63),Point(13,14)));
+    tr.add(Triangle(Point(2,6), Point(3,63),Point(14,14)));
+    tr.add(Triangle(Point(6,6), Point(7,63),Point(13,14)));
+    tr.add(Triangle(Point(2,5), Point(3,23),Point(41,53)));
+    tr.add(Triangle(Point(3,8), Point(48,63),Point(13,14)));
+    tr.add(Triangle(Point(6,8), Point(1,51),Point(12,13)));
+    tr.add(Triangle(Point(4,6), Point(5,13),Point(52,11)));
+    tr.add(Triangle(Point(2,6), Point(3,63),Point(13,14)));
+    assert(tr.getLength() == 13);
+    tr.remove(Triangle(Point(2,6), Point(3,63),Point(13,14)));
+    assert(tr.getLength() == 12);
+    tr.remove(Triangle(Point(4,6), Point(5,13),Point(52,11)));
+    assert(tr.getLength() == 11);
+    tr.remove(Triangle(Point(6,8), Point(1,51),Point(12,13)));
+    assert(tr.getLength() == 10);
+    tr.remove(Triangle(Point(5,6), Point(35,63),Point(13,14)));
+    assert(tr.getLength() == 9);
+    assert(tr.getTriangle(3) == Triangle(Point(42,31), Point(5,6),Point(1,6)));
+    assert(tr.getTriangle(4) == Triangle(Point(2,6), Point(3,63),Point(14,14)));
+    assert(tr.ifExist(Triangle(Point(2,6), Point(3,63),Point(14,14))) == true);
+    assert(tr.ifExist(Triangle(Point(), Point(), Point())) == false);
+}
+
 void runTests() {
     testPoints();
     testTriangles();
+    testTrianglRepository();
 }
 

@@ -25,14 +25,14 @@ public:
      * @param Y = a Point
      * @param Z = a Point
      */
-    Triangle(const Point& X, const Point& Y, const Point& Z);
+    Triangle(const Point X, const Point Y, const Point Z);
 
 
     /**
      * Copy constructor, creates a Triangle using values from another Triangle
      * @param triangle = a Triangle
      */
-    Triangle(const Triangle& triangle);
+    Triangle(Triangle const &triangle);
 
 
     /**
@@ -40,11 +40,11 @@ public:
      * @param triangle = a Triagle
      * @return = a new Triangle (equal to var triangle)
      */
-    Triangle& operator=(const Triangle& triangle);
+    Triangle& operator=(const Triangle triangle);
 
 
     /**
-     *  Deconstructor
+     *  Destructor
      */
     ~Triangle();
 
@@ -73,19 +73,26 @@ public:
      *  Setter for the point A
      * @param X = a Point which will be set to Point A
      */
-    void setA(const Point& X);
+    void setA(const Point X);
 
     /**
      *  Setter for the point B
      * @param Y = a Point which will be set to Point B
      */
-    void setB(const Point& Y);
+    void setB(const Point Y);
 
     /**
      *  Setter for the point C
      * @param Z = a Point which will be set to Point C
      */
-    void setC(const Point& Z);
+    void setC(const Point Z);
+
+    /**
+     * Calculates perimeter and returns it
+     * @return the perimeter
+     * TODO: apply formula and return perimeter sqrt(s*(s-a)*(s-b)*(s-c));
+     */
+    double getArea();
 
     /**
      * Checks whether a triangle has the same values on A, B and C Points
@@ -110,6 +117,12 @@ public:
      * @return = an input stream (with information of a Point)
      */
     friend std::istream& operator>>(std::istream &is, Triangle &triangle);
+
+    /**
+     * Calculates perimeter of triangle.
+     * @return: The perimeter of the triangle.
+     */
+    double getPerimeter();
 };
 
 

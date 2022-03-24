@@ -34,7 +34,7 @@ public:
      * @param point = a Point
      * @return = a new Point (equal to var point)
      */
-    Point& operator=(const Point& point);
+    Point &operator=(Point point);
 
     /**
      *  Deconstructor
@@ -72,13 +72,14 @@ public:
      * @return true if they have the same values, false otherwise
      */
     friend bool operator==(const Point& point1, const Point& point2);
+
     /**
      * IO Operator >>, loads a point from an input stream
      * @param os = an input stream
      * @param point = a Point
      * @return the output stream
      */
-    friend std::ostream& operator<<(std::ostream &os, Point &point);
+    friend std::ostream& operator<<(std::ostream &os, const Point &point);
 
     /**
      * IO Operator >>, saves a Point into an output stream

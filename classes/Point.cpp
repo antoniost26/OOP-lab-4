@@ -22,7 +22,7 @@ Point::Point(const Point &point) {
     this->y = point.y;
 }
 
-Point& Point::operator=(const Point& point){
+Point &Point::operator=(Point point){
 //    std::cout << "[Point] : operator=\n";
     if(this != &point){
         this->x = point.x;
@@ -56,9 +56,9 @@ void Point::setY(double b) {
     this->y = b;
 }
 
-std::ostream &operator<<(std::ostream &os, Point &point) {
+std::ostream &operator<<(std::ostream &os, const Point &point) {
 //    std::cout << "[Point] : operator<<\n";
-    os << "(" << point.x << ", " << point.y << ")\n";
+    os << "(" << point.x << ", " << point.y << ")";
     return os;
 }
 

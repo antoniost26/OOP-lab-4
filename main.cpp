@@ -1,11 +1,8 @@
-#include <iostream>
 #include "tests/tests.h"
-#include "classes/Point.h"
-#include "classes/Triangle.h"
+#include "UI/menu.h"
 
 int main() {
     runTests();
-    Triangle A = Triangle(Point(), Point(), Point());
-    A.toString();
+    runMenu();
     return 0;
 }
