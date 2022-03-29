@@ -27,7 +27,7 @@ public:
      * Copy constructor, creates a Point using values from another Point
      * @param point = a Point
      */
-    Point(const Point& point);
+    Point(const Point &point);
 
     /**
      * Create a new Point (equal to a given Point)
@@ -71,7 +71,7 @@ public:
      * @param point2 = a Point
      * @return true if they have the same values, false otherwise
      */
-    friend bool operator==(const Point& point1, const Point& point2);
+    friend bool operator==(const Point &point1, const Point &point2);
 
     /**
      * IO Operator >>, loads a point from an input stream
@@ -79,7 +79,7 @@ public:
      * @param point = a Point
      * @return the output stream
      */
-    friend std::ostream& operator<<(std::ostream &os, const Point &point);
+    friend std::ostream &operator<<(std::ostream &os, const Point &point);
 
     /**
      * IO Operator >>, saves a Point into an output stream
@@ -87,7 +87,13 @@ public:
      * @param point = a Point
      * @return = an input stream (with information of a Point)
      */
-    friend std::istream& operator>>(std::istream &is, Point &point);
+    friend std::istream &operator>>(std::istream &is, Point &point);
+
+    /**
+     * Checks if point is in first quadron.
+     * @return: Returns true if the point is in first quadron, false otherwise.
+     */
+    bool isInFirstQuadron();
 };
 
 #endif //LAB4_POINT_H

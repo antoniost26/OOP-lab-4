@@ -25,7 +25,7 @@ Triangle::Triangle(const Triangle &triangle) {
 }
 
 Triangle &Triangle::operator=(const Triangle triangle) {
-    if (this!= &triangle){
+    if (this != &triangle) {
         this->A = triangle.A;
         this->B = triangle.B;
         this->C = triangle.C;
@@ -59,8 +59,8 @@ void Triangle::setC(const Point Z) {
     this->C = Z;
 }
 
-bool operator==(const Triangle &triangle1, const Triangle &triangle2) {
-    return (triangle1.A == triangle2.A && triangle1.B == triangle2.B && triangle1.C == triangle2.C);
+bool operator==(Triangle triangle1, Triangle triangle2) {
+    return (triangle1.getArea() == triangle2.getArea());
 }
 
 std::ostream &operator<<(std::ostream &os, Triangle &triangle) {
@@ -70,26 +70,33 @@ std::ostream &operator<<(std::ostream &os, Triangle &triangle) {
 
 std::istream &operator>>(std::istream &is, Triangle &triangle) {
     Point A, B, C;
-    std::cout << "A:"; is >> A;
+    std::cout << "A:";
+    is >> A;
     triangle.A = A;
-    std::cout << "B:"; is >> B;
+    std::cout << "B:";
+    is >> B;
     triangle.B = B;
-    std::cout << "C:"; is >> C;
+    std::cout << "C:";
+    is >> C;
     triangle.C = C;
     return is;
+}
+
+bool operator<(Triangle triangle1, Triangle triangle2) {
+    return (triangle1.getArea() < triangle2.getArea());
 }
 
 double Triangle::getArea() {
     const double a = calculateDistanceBetweenPoints(this->B, this->C);
     const double b = calculateDistanceBetweenPoints(this->A, this->C);
     const double c = calculateDistanceBetweenPoints(this->A, this->B);
-    const double semiPerimeter = this->getPerimeter()/2;
-    return sqrt(semiPerimeter*(semiPerimeter-a)*(semiPerimeter-b)*(semiPerimeter-c));
+    const double semiPerimeter = this->getPerimeter() / 2;
+    return sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
 }
 
 double Triangle::getPerimeter() {
     const double a = calculateDistanceBetweenPoints(this->B, this->C);
     const double b = calculateDistanceBetweenPoints(this->A, this->C);
     const double c = calculateDistanceBetweenPoints(this->A, this->B);
-    return a+b+c;
+    return a + b + c;
 }

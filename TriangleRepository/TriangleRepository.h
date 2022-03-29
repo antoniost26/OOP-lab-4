@@ -7,13 +7,15 @@
 
 
 #include "../classes/Triangle.h"
+#include <map>
+
+typedef std::map<int, Triangle> MAP;
+typedef std::pair<const int, Triangle> PAIR;
 
 class TriangleRepository {
 private:
-    Triangle* triangles;
-    int capacity;
-    int length;
-    void resize();
+    MAP triangles;
+    int index;
 public:
     /**
      * Initializer constructor.
@@ -35,7 +37,7 @@ public:
      * Gets length of actual triangle entries. (Returns how many triangles there are in the repository)
      * @return: Length of repository.
      */
-    int getLength();
+    unsigned long long getSize();
 
     /**
      * Adds a triangle into the repository.
@@ -51,18 +53,11 @@ public:
     int remove(const Triangle t);
 
     /**
-     * Searches a triangle in the repository.
+     * Searches a triangle in the repository. *note: can act as a "find" function, returning -1 if triangle doesn't exist.
      * @param t: A triangle.
      * @return: Returns the triangle's position or -1 if it can't be found.
      */
     int search(const Triangle t);
-
-    /**
-     * Checks whether a triangle is in the repository.
-     * @param t: A triangle.
-     * @return: Returns true if a triangle was found, false otherwise.
-     */
-    bool ifExist(const Triangle t);
 
     /**
      * Returns a triangle from a given position.
@@ -70,6 +65,30 @@ public:
      * @return: Returns the triangle if the position is valid, else throws an exception.
      */
     Triangle getTriangle(int position);
+
+    /**
+     * Returns a map containing all triangles.
+     * @return: A map containing all triangles.
+     */
+    MAP getTriangles();
+
+    /**
+     * Returns the triangle with largest area from the repository.
+     * @return: A triangle.
+     */
+    Triangle getLargestTriangle();
+
+    /**
+     * Returns all triangles situated in the first quadrant.
+     * @return: A map<int, Triangle>.
+     */
+    MAP getTrianglesInFirstQuadrant();
+
+    /**
+     * Returns the longest sequence of equal triangles (by area).
+     * @return: A map<int, Triangle>.
+     */
+    MAP getLongestSequenceOfEqualTriangles();
 };
 
 

@@ -4,75 +4,111 @@
 
 #include "TriangleRepository.h"
 
-void TriangleRepository::resize() {
-    auto* newTriangles = new Triangle[this->capacity*2];
-    for (int i=0; i < length; i++) {
-        newTriangles[i] = this->triangles[i];
-    }
-    this->capacity*=2;
-    delete[] this->triangles;
-    this->triangles = newTriangles;
-}
+//void TriangleRepository::resize() {
+//    auto* newTriangles = new Triangle[this->capacity*2];
+//    for (int i=0; i < length; i++) {
+//        newTriangles[i] = this->triangles[i];
+//    }
+//    this->capacity*=2;
+//    delete[] this->triangles;
+//    this->triangles = newTriangles;
+//}
 
 TriangleRepository::TriangleRepository(TriangleRepository &tr) {
-    this->capacity = tr.capacity;
-    this->triangles = new Triangle[tr.getLength()];
-    this->length = tr.getLength();
+//    this->capacity = tr.capacity;
+    for (auto it: tr.triangles) {
+        this->triangles.insert(std::pair<int, Triangle>(it.first, it.second));
+    }
     this->triangles = tr.triangles;
+    this->index = tr.index;
 }
 
-int TriangleRepository::getLength() {
-    return this->length;
+unsigned long long TriangleRepository::getSize() {
+    return this->triangles.size();
 }
 
 void TriangleRepository::add(Triangle t) {
-    if (length == capacity) {
-        this->resize();
-    }
-
-    triangles[length++] = t;
+    this->triangles.insert(std::pair<int, Triangle>(index++, t));
 }
 
 int TriangleRepository::remove(Triangle t) {
     int pos = search(t);
     if (pos > -1) {
-        for (int i = pos; i < length-1; i++) {
-            this->triangles[i] = this->triangles[i+1];
-        }
-        length--;
+        this->triangles.erase(pos);
         return 1;
     }
     return 0;
 }
 
 int TriangleRepository::search(Triangle t) {
-    for (int i=0; i<length; i++) {
-        if (this->triangles[i] == t) {
-            return i;
+    for (auto it: this->triangles) {
+        if (it.second == t) {
+            return it.first;
         }
     }
     return -1;
 }
 
-bool TriangleRepository::ifExist(Triangle t) {
-    if (this->search(t) > -1) {
-        return true;
-    }
-    return false;
+Triangle TriangleRepository::getTriangle(int position) {
+    return this->triangles.at(position);
 }
 
-Triangle TriangleRepository::getTriangle(int position) {
-    return (position >=0 && position < length)
-    ?this->triangles[position]
-    :throw std::invalid_argument("Position must be lower than length and greater or equal to 0.");
+TriangleRepository::TriangleRepository() : triangles{}, index{1} {}
+
+MAP TriangleRepository::getTriangles() {
+    return this->triangles;
+}
+
+Triangle TriangleRepository::getLargestTriangle() {
+    int maxArea = 0, maxIndex = 0;
+    for (auto it: this->triangles) {
+        if (it.second.getArea() > maxArea) {
+            maxArea = it.second.getArea();
+            maxIndex = it.first;
+        }
+    }
+    return this->getTriangle(maxIndex);
+}
+
+MAP TriangleRepository::getTrianglesInFirstQuadrant() {
+    MAP firstQuadrantTriangles;
+    for (auto it: this->triangles) {
+        if (it.second.getA().isInFirstQuadron() && it.second.getB().isInFirstQuadron() &&
+            it.second.getC().isInFirstQuadron()) {
+            firstQuadrantTriangles.insert(PAIR(it.first, it.second));
+        }
+    }
+    return firstQuadrantTriangles;
+}
+
+MAP TriangleRepository::getLongestSequenceOfEqualTriangles() {
+    MAP trianglesSequence, tempTriangles;
+    tempTriangles.insert(
+            PAIR(this->triangles.begin()->first, this->triangles.begin()->second));
+    int lastIndex = this->triangles.begin()->first;
+
+    for (auto it: this->triangles) {
+        if (it.first != this->triangles.begin()->first) {
+            if (it.second == this->getTriangle(lastIndex)) {
+                tempTriangles.insert(PAIR(it.first, it.second));
+            } else {
+                if (tempTriangles.size() > trianglesSequence.size()) {
+                    trianglesSequence.clear();
+                    trianglesSequence = tempTriangles;
+                }
+                tempTriangles.clear();
+                tempTriangles.insert(PAIR(it.first, it.second));
+            }
+            lastIndex = it.first;
+        }
+    }
+    if (tempTriangles.size() > trianglesSequence.size()) {
+        trianglesSequence.clear();
+        trianglesSequence = tempTriangles;
+    }
+    return trianglesSequence.size() > 1 ? trianglesSequence : MAP();
 }
 
 TriangleRepository::~TriangleRepository() {
-    delete[] this->triangles;
-}
-
-TriangleRepository::TriangleRepository() {
-        this->capacity = 10;
-        this->triangles = new Triangle[capacity];
-        this->length = 0;
+    this->triangles.clear();
 }

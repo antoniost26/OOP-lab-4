@@ -6,5 +6,5 @@
 #include <cmath>
 
 double calculateDistanceBetweenPoints(const Point A, const Point B) {
-    return sqrt(pow(A.getX() - B.getX(), 2.0) + pow((A.getY() - B.getY()), 2.0));;
+    return sqrt(pow(A.getX() - B.getX(), 2.0) + pow((A.getY() - B.getY()), 2.0));
 }

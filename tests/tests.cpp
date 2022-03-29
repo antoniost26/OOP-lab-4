@@ -12,8 +12,8 @@ void testPoints() {
     A = Point(0, 13);
     B = A;
     C = Point(13, 12);
-    assert(A==B);
-    assert(!(A==C));
+    assert(A == B);
+    assert(!(A == C));
 
     assert(A.getX() == 0);
     assert(A.getY() == 13);
@@ -51,30 +51,30 @@ void testTriangles() {
     t1 = Triangle();
 
     assert(t1.getA() == Point(0, 0));
-    assert(t1.getB() == Point(0,0));
-    assert(t1.getC() == Point(0,0));
+    assert(t1.getB() == Point(0, 0));
+    assert(t1.getC() == Point(0, 0));
 
-    t1.setA(Point(3,4));
-    assert(t1.getA() == Point(3,4));
-    t1.setB(Point(4,2));
-    assert(t1.getB() == Point(4,2));
-    t1.setC(Point(5,2));
-    assert(t1.getC() == Point(5,2));
+    t1.setA(Point(3, 4));
+    assert(t1.getA() == Point(3, 4));
+    t1.setB(Point(4, 2));
+    assert(t1.getB() == Point(4, 2));
+    t1.setC(Point(5, 2));
+    assert(t1.getC() == Point(5, 2));
 
     t2 = Triangle(t1);
-    assert(t2.getA() == Point(3,4));
-    assert(t2.getB() == Point(4,2));
-    assert(t2.getC() == Point(5,2));
+    assert(t2.getA() == Point(3, 4));
+    assert(t2.getB() == Point(4, 2));
+    assert(t2.getC() == Point(5, 2));
 
     t2 = Triangle();
     assert(t2.getA() == Point(0, 0));
-    assert(t2.getB() == Point(0,0));
-    assert(t2.getC() == Point(0,0));
+    assert(t2.getB() == Point(0, 0));
+    assert(t2.getC() == Point(0, 0));
 
     t2 = t1;
-    assert(t2.getA() == Point(3,4));
-    assert(t2.getB() == Point(4,2));
-    assert(t2.getC() == Point(5,2));
+    assert(t2.getA() == Point(3, 4));
+    assert(t2.getB() == Point(4, 2));
+    assert(t2.getC() == Point(5, 2));
 
     assert(t1 == t2);
 
@@ -84,40 +84,63 @@ void testTriangles() {
 
 }
 
-void testTrianglRepository() {
+void testTriangleRepository() {
     TriangleRepository tr;
-    tr.add(Triangle(Point(1,2), Point(1,5),Point(3,7)));
-    tr.add(Triangle(Point(2,2), Point(3,5),Point(5,6)));
-    tr.add(Triangle(Point(1,5), Point(21,53),Point(41,44)));
-    tr.add(Triangle(Point(42,31), Point(5,6),Point(1,6)));
-    tr.add(Triangle(Point(2,6), Point(3,63),Point(13,14)));
-    assert(tr.getLength() == 5);
-    tr.add(Triangle(Point(5,6), Point(35,63),Point(13,14)));
-    tr.add(Triangle(Point(2,6), Point(3,63),Point(14,14)));
-    tr.add(Triangle(Point(6,6), Point(7,63),Point(13,14)));
-    tr.add(Triangle(Point(2,5), Point(3,23),Point(41,53)));
-    tr.add(Triangle(Point(3,8), Point(48,63),Point(13,14)));
-    tr.add(Triangle(Point(6,8), Point(1,51),Point(12,13)));
-    tr.add(Triangle(Point(4,6), Point(5,13),Point(52,11)));
-    tr.add(Triangle(Point(2,6), Point(3,63),Point(13,14)));
-    assert(tr.getLength() == 13);
-    tr.remove(Triangle(Point(2,6), Point(3,63),Point(13,14)));
-    assert(tr.getLength() == 12);
-    tr.remove(Triangle(Point(4,6), Point(5,13),Point(52,11)));
-    assert(tr.getLength() == 11);
-    tr.remove(Triangle(Point(6,8), Point(1,51),Point(12,13)));
-    assert(tr.getLength() == 10);
-    tr.remove(Triangle(Point(5,6), Point(35,63),Point(13,14)));
-    assert(tr.getLength() == 9);
-    assert(tr.getTriangle(3) == Triangle(Point(42,31), Point(5,6),Point(1,6)));
-    assert(tr.getTriangle(4) == Triangle(Point(2,6), Point(3,63),Point(14,14)));
-    assert(tr.ifExist(Triangle(Point(2,6), Point(3,63),Point(14,14))) == true);
-    assert(tr.ifExist(Triangle(Point(), Point(), Point())) == false);
+    tr.add(Triangle(Point(1, 2), Point(1, 5), Point(3, 7)));
+    tr.add(Triangle(Point(2, 2), Point(3, 5), Point(5, 6)));
+    tr.add(Triangle(Point(1, 5), Point(21, 53), Point(41, 44)));
+    tr.add(Triangle(Point(42, 31), Point(5, 6), Point(1, 6)));
+    tr.add(Triangle(Point(2, 6), Point(3, 63), Point(13, 14)));
+
+    assert(tr.getSize() == 5);
+    tr.add(Triangle(Point(5, 6), Point(35, 63), Point(13, 14)));
+    tr.add(Triangle(Point(2, 6), Point(3, 63), Point(14, 14)));
+    tr.add(Triangle(Point(6, 6), Point(7, 63), Point(13, 14)));
+    tr.add(Triangle(Point(2, 5), Point(3, 23), Point(41, 53)));
+    tr.add(Triangle(Point(3, 8), Point(48, 63), Point(13, 14)));
+    tr.add(Triangle(Point(6, 8), Point(1, 51), Point(12, 13)));
+    tr.add(Triangle(Point(4, 6), Point(5, 13), Point(52, 11)));
+    tr.add(Triangle(Point(2, 6), Point(3, 63), Point(13, 14)));
+    assert(tr.getSize() == 13);
+    tr.remove(Triangle(Point(2, 6), Point(3, 63), Point(13, 14)));
+    assert(tr.getSize() == 12);
+    tr.remove(Triangle(Point(4, 6), Point(5, 13), Point(52, 11)));
+    assert(tr.getSize() == 11);
+    tr.remove(Triangle(Point(6, 8), Point(1, 51), Point(12, 13)));
+    assert(tr.getSize() == 10);
+    tr.remove(Triangle(Point(5, 6), Point(35, 63), Point(13, 14)));
+    assert(tr.getSize() == 9);
+
+    assert(tr.getTriangle(4) == Triangle(Point(42, 31), Point(5, 6), Point(1, 6)));
+    assert(tr.getTriangle(7) == Triangle(Point(2, 6), Point(3, 63), Point(14, 14)));
+
+    assert(tr.search(Triangle(Point(2, 6), Point(3, 63), Point(14, 14))) == 7);
+    assert(tr.search(Triangle(Point(), Point(), Point())) == -1);
+
+    assert(tr.getLargestTriangle() == Triangle(Point(1, 5), Point(21, 53), Point(41, 44)));
+    tr.add(Triangle(Point(30, 66), Point(89, 552), Point(55, 42)));
+    assert(tr.getLargestTriangle() == Triangle(Point(30, 66), Point(89, 552), Point(55, 42)));
+
+    assert(tr.getTrianglesInFirstQuadrant() == tr.getTriangles());
+    tr.add(Triangle(Point(-1, 2), Point(1, 3), Point(3, 2)));
+    MAP triangles = tr.getTriangles();
+    triangles.erase(tr.search(Triangle(Point(-1, 2), Point(1, 3), Point(3, 2))));
+    assert(tr.getTrianglesInFirstQuadrant() == triangles);
+    assert(tr.getLongestSequenceOfEqualTriangles().empty());
+
+    MAP triangles2;
+    triangles2.insert(PAIR(16, Triangle(Point(30, 66), Point(89, 552), Point(55, 42))));
+    triangles2.insert(PAIR(17, Triangle(Point(30, 66), Point(89, 552), Point(55, 42))));
+    triangles2.insert(PAIR(18, Triangle(Point(30, 66), Point(89, 552), Point(55, 42))));
+    tr.add(Triangle(Point(30, 66), Point(89, 552), Point(55, 42)));
+    tr.add(Triangle(Point(30, 66), Point(89, 552), Point(55, 42)));
+    tr.add(Triangle(Point(30, 66), Point(89, 552), Point(55, 42)));
+    assert(tr.getLongestSequenceOfEqualTriangles() == triangles2);
 }
 
 void runTests() {
     testPoints();
     testTriangles();
-    testTrianglRepository();
+    testTriangleRepository();
 }
 

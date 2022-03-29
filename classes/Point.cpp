@@ -22,9 +22,9 @@ Point::Point(const Point &point) {
     this->y = point.y;
 }
 
-Point &Point::operator=(Point point){
+Point &Point::operator=(Point point) {
 //    std::cout << "[Point] : operator=\n";
-    if(this != &point){
+    if (this != &point) {
         this->x = point.x;
         this->y = point.y;
     }
@@ -65,13 +65,19 @@ std::ostream &operator<<(std::ostream &os, const Point &point) {
 std::istream &operator>>(std::istream &is, Point &point) {
 //    std::cout << "[Point] : operator>>\n";
     double x, y;
-    std::cout << "x= "; is >> x;
+    std::cout << "x= ";
+    is >> x;
     point.x = x;
-    std::cout << "y= "; is >> y;
+    std::cout << "y= ";
+    is >> y;
     point.y = y;
     return is;
 }
 
 bool operator==(const Point &point1, const Point &point2) {
     return ((point1.x == point2.x) && (point1.y == point2.y));
+}
+
+bool Point::isInFirstQuadron() {
+    return (this->x > 0 && this->y > 0);
 }

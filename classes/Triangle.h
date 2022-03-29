@@ -40,7 +40,7 @@ public:
      * @param triangle = a Triagle
      * @return = a new Triangle (equal to var triangle)
      */
-    Triangle& operator=(const Triangle triangle);
+    Triangle &operator=(const Triangle triangle);
 
 
     /**
@@ -100,7 +100,15 @@ public:
      * @param triangle2 = a Triangle
      * @return true if they have the same values, false otherwise
      */
-    friend bool operator==(const Triangle& triangle1, const Triangle& triangle2);
+    friend bool operator==(Triangle triangle1, Triangle triangle2);
+
+    /**
+     * Checks whether a triangle is "lower" than another triangle.
+     * @param triangle1: A triangle.
+     * @param triangle2: A triangle.
+     * @return
+     */
+    friend bool operator<(Triangle triangle1, Triangle triangle2);
 
     /**
      * IO Operator >>, loads a Triangle from an input stream
@@ -108,7 +116,7 @@ public:
      * @param triangle = a Triangle
      * @return the output stream
      */
-    friend std::ostream& operator<<(std::ostream &os, Triangle &triangle);
+    friend std::ostream &operator<<(std::ostream &os, Triangle &triangle);
 
     /**
      * IO Operator >>, saves a Triangle into an output stream
@@ -116,7 +124,7 @@ public:
      * @param triangle = a Triangle
      * @return = an input stream (with information of a Point)
      */
-    friend std::istream& operator>>(std::istream &is, Triangle &triangle);
+    friend std::istream &operator>>(std::istream &is, Triangle &triangle);
 
     /**
      * Calculates perimeter of triangle.
